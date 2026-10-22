@@ -326,6 +326,12 @@ function resetSwipe() {
   card.classList.remove('dragging'); delete card.dataset.swipe;
   for (const property of ['--swipe-x','--swipe-angle','--swipe-strength']) card.style.removeProperty(property);
 }
+function lostSwipeCapture(event) {
+  const card = $('songCard');
+  // Touch starts with implicit capture on the artwork. Transferring capture to
+  // the card fires a bubbling loss event from that child, not a cancelled swipe.
+  if (event.target === card && swipeGesture?.id === event.pointerId && !card.hasPointerCapture(event.pointerId)) resetSwipe();
+}
 function startSwipe(event) {
   if (!phoneLayout.matches || currentView !== 'review' || choiceTimer !== null || !event.isPrimary || event.button !== 0 || swipeGesture || event.target.closest('a,button,input,#embedWrap')) return;
   swipeGesture = {id:event.pointerId,x:event.clientX,y:event.clientY,token:renderToken,dragging:false};
@@ -384,7 +390,7 @@ $('songCard').addEventListener('pointerdown',startSwipe);
 $('songCard').addEventListener('pointermove',moveSwipe);
 $('songCard').addEventListener('pointerup',endSwipe);
 $('songCard').addEventListener('pointercancel',resetSwipe);
-$('songCard').addEventListener('lostpointercapture',resetSwipe);
+$('songCard').addEventListener('lostpointercapture',lostSwipeCapture);
 phoneLayout.addEventListener('change',resetSwipe);
 window.addEventListener('resize',resetSwipe);
 $('finishEarly').onclick = renderResults;
