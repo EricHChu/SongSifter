@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f5f5ef"><meta name="description" content="A little space to sort your Spotify songs. Keep what you love and copy your new playlist.">
+<title>Song Sifter — Keep the good stuff.</title>
+<style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--paper:#f5f5ef;--ink:#202923;--muted:#7b827b;--line:#dedfd7;--mint:#c5eb97;--green:#487335}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}button,a,textarea{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer;border:0}button:disabled{opacity:.4;cursor:not-allowed}button:focus-visible,a:focus-visible{outline:3px solid #5c9252;outline-offset:4px}a{color:inherit}header{height:100px;margin:0 6%;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{text-decoration:none;font-family:Manrope,sans-serif;font-size:25px;font-weight:800;letter-spacing:-1px;display:flex;align-items:center}.brand-icon{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:var(--mint);font-size:35px;border-radius:50%;width:40px;height:40px;transform:rotate(-15deg);margin-right:12px}.brand-dot{color:#6b9c46}.header-note{color:#677262;font-size:12px;display:flex;align-items:center;gap:8px}.header-note i{width:6px;height:6px;background:#79a754;border-radius:50%}main{max-width:1180px;margin:auto;padding:0 38px;min-height:calc(100vh - 180px)}.view[hidden],[hidden]{display:none!important}.intro{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;padding:94px 0 90px}.eyebrow{font-size:10px;font-weight:700;letter-spacing:1.8px;margin:0 0 20px}.intro-copy>.eyebrow{color:#71825d}h1{font-family:Manrope,sans-serif;font-size:76px;letter-spacing:-4.5px;line-height:1.06;margin:22px 0 27px;font-weight:800}h1>span{color:#8abb60}.lede{color:#7a8077;font-size:17px;line-height:1.75}.steps{display:flex;flex-direction:column;gap:16px;margin:40px 0}.steps span{font-size:13px;font-weight:500}.steps b{font-size:10px;border:1px solid #ced5c5;color:#82916f;border-radius:50%;display:inline-flex;width:27px;height:27px;align-items:center;justify-content:center;margin-right:12px}.local-note{font-size:11px;line-height:1.8;color:#969b91}.import-panel,.result-panel{background:#fffefa;border:1px solid var(--line);border-radius:16px;padding:30px;box-shadow:0 12px 30px #29321c03}.panel-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:30px}.panel-top .eyebrow{margin:0;font-size:9px}.small-pill{font-size:8px;font-weight:700;letter-spacing:1px;border:1px solid #dce2d2;background:#f1f5e9;color:#81916f;border-radius:30px;padding:6px 9px;white-space:nowrap}.import-panel label{display:block;font-size:23px;font-weight:700;letter-spacing:-.6px}.muted{font-size:12px;color:var(--muted);line-height:1.7}.import-panel .muted{margin:9px 0 22px}textarea{width:100%;resize:vertical;border:1px solid #dedfd6;border-radius:8px;background:#f7f8f2;color:#43523a;padding:17px;font:11px/2 'DM Sans',sans-serif;min-height:215px;outline:none}textarea:focus{border-color:#8fac72;box-shadow:0 0 0 3px #c5eb972f}textarea::placeholder{color:#adb3a6}.input-meta{display:flex;justify-content:space-between;margin:10px 0 24px;font-size:10px;color:#8d9783}.text-button{background:none;padding:0;color:#6d7e5b;font-size:11px;font-weight:500}.text-button:hover{text-decoration:underline}.primary,.secondary,.resume{border-radius:7px;padding:15px 21px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;justify-content:space-between;gap:25px}.primary{background:var(--mint);color:#2b4320}.primary:hover:not(:disabled){background:#b4dd83}.secondary{background:transparent;border:1px solid #d5d9ce;justify-content:center}.secondary:hover{background:#ecefe5}.wide{width:100%}.resume{margin-top:10px;background:#eef2e7;justify-content:center}.fine{font-size:10px;line-height:1.8;color:#959c8e;text-align:center;margin:15px 0 0}.error{font-size:11px;color:#a24e47;line-height:1.5;margin:8px 0}.error:empty{display:none}footer{max-width:1180px;margin:0 auto;padding:25px 38px;display:flex;justify-content:space-between;font-size:9px;color:#9a9e93;letter-spacing:1px}footer span:last-child{letter-spacing:0}.review{padding:45px 0 20px}.review-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:35px}.review-top .eyebrow{color:#89917f;margin:0 0 10px}h2{font:700 27px Manrope,sans-serif;letter-spacing:-1px;margin:0}.progress-label{display:flex;justify-content:space-between;font-size:10px;color:#7c8872;margin-bottom:10px}.progress-track{height:4px;border-radius:5px;background:#e1e5da;overflow:hidden}#progress{height:100%;width:0;background:#8bb566;transition:width .2s}.review-layout{display:grid;grid-template-columns:1fr 350px 1fr;gap:65px;margin-top:30px;align-items:start}.session-sidebar{padding-top:30px}.session-sidebar .eyebrow{color:#909886;font-size:9px;margin-bottom:25px}.stat{display:flex;align-items:center;gap:10px;margin:21px 0;font-size:12px;color:#7b8571}.stat strong{margin-left:auto;color:#36402f;font-size:14px}.stat-dot{width:7px;height:7px;border-radius:50%;background:#b3b9aa}.stat-dot.green{background:#95ba6f}.stat-dot.outline{background:transparent;border:1px solid #a9b09f}.sidebar-note{border-top:1px solid var(--line);font-size:18px;line-height:1.5;letter-spacing:-.5px;padding-top:24px;margin:28px 0;color:#9aA28f}.song-card{border:1px solid #e1e2d9;border-radius:13px;overflow:hidden;background:#fffefa;box-shadow:0 12px 24px #33462508}.artwork{aspect-ratio:1;position:relative;background:#d9e4cb;display:flex;align-items:center;justify-content:center}.artwork img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0}.record-placeholder{display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:linear-gradient(145deg,#c1dba4,#e6eddd)}.record{width:215px;height:215px;display:grid;place-items:center;border-radius:50%;background:repeating-radial-gradient(circle at center,#2e3c2b 0 2px,#354632 3px 4px);box-shadow:0 8px 12px #2d4a2a25}.record span{display:grid;place-items:center;background:#c5eb97;color:#355429;width:64px;height:64px;border-radius:50%;font-size:29px}.card-stamp{position:absolute;bottom:14px;left:16px;font-size:7px;font-weight:700;letter-spacing:2px;background:#f7faeddd;padding:6px 8px;border-radius:3px;color:#3f5232}.song-info{padding:22px}.song-info .eyebrow{font-size:8px;color:#8b967c;margin:0 0 9px}.song-info h3{font:800 23px/1.3 Manrope,sans-serif;letter-spacing:-.7px;margin:0;overflow-wrap:anywhere}.song-info .muted{font-size:11px;margin:7px 0 15px}.track-links{display:flex;justify-content:space-between;gap:10px;align-items:center}.track-links a{display:flex;align-items:center;gap:5px;font-size:10px;text-decoration:none;color:#69775d}.track-links svg{width:14px;height:14px}.track-links button{font-size:9px}#embedWrap{margin-top:16px}#embedWrap iframe{width:100%;height:152px;border:0;border-radius:9px}.review-tip{padding-top:76px;color:#8b9680}.tip-symbol{font-size:37px;color:#aabf90}.review-tip>p{font-size:16px;margin:15px 0 8px}.review-tip>span:not(.tip-symbol){font-size:12px;line-height:1.8}.shortcuts{display:flex;flex-direction:column;gap:12px;margin-top:35px;font-size:10px;color:#949d8b}kbd{font:10px 'DM Sans',sans-serif;border:1px solid #d8ddcf;border-bottom-width:2px;display:inline-flex;justify-content:center;align-items:center;border-radius:4px;height:23px;width:26px;margin-right:8px;color:#7e8b70}.decisions{display:flex;gap:12px;justify-content:center;margin:22px auto 0;max-width:350px}.decision{width:50%;padding:16px 15px;display:flex;align-items:center;justify-content:center;gap:12px;border-radius:8px;font-size:13px;font-weight:600;transition:transform .1s,background .1s}.decision:active{transform:scale(.97)}.decision span{font-size:20px;font-weight:400}.remove{background:#fffefa;border:1px solid #d9ded0;color:#818b76}.remove:hover{background:#eee4df;color:#9d5b4a}.keep{background:var(--mint);color:#355126}.keep:hover{background:#b3dc83}.under-actions{text-align:center;color:#a0a795;font-size:9px;margin:14px 0}.results{max-width:680px;margin:auto;padding:55px 0 40px;text-align:center}.results>.eyebrow{color:#8c997f}.result-mark{display:grid;place-items:center;border-radius:50%;width:50px;height:50px;margin:auto;background:var(--mint);font-size:25px;color:#537538}.results h1{font-size:47px;letter-spacing:-2.3px;margin:22px 0 12px}.results .lede{font-size:14px;margin-bottom:30px}.result-panel{text-align:left}.result-panel .panel-top{margin-bottom:15px}.result-panel label{font-size:14px;font-weight:600}#output{min-height:170px}.export-buttons{display:flex;gap:10px;margin-top:15px}.export-buttons .primary{flex:1}.paste-tip{border-top:1px solid var(--line);padding-top:20px;margin-top:22px;font-size:11px;color:#8c957f;line-height:1.8}.paste-tip b{font-size:11px;color:#627452}.paste-tip p{margin:6px 0 0}.result-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:22px}#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:12px 20px;background:#293425;color:#eff6e6;border-radius:8px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .15s;z-index:5}#toast.visible{opacity:1}
+@media(min-width:1450px){.intro{padding-top:130px}}@media(max-width:1000px){.intro{gap:45px}h1{font-size:62px}.review-layout{gap:35px;grid-template-columns:1fr 330px 1fr}.sidebar-note{font-size:15px}.review-tip{padding-top:60px}.review-top h2{font-size:23px}}@media(max-width:760px){header{height:78px;margin:0 22px}.brand{font-size:21px}.brand-icon{width:33px;height:33px;font-size:29px}.header-note{font-size:0}.header-note i{width:7px;height:7px}main{padding:0 22px}.intro{grid-template-columns:1fr;gap:32px;padding:40px 0}.intro-copy h1{font-size:57px;letter-spacing:-3px}.intro-copy h1 br{display:none}.intro-copy .lede{font-size:15px}.steps{flex-direction:row;gap:12px;margin:25px 0}.steps span{font-size:10px}.steps b{width:22px;height:22px;margin-right:5px;font-size:8px}.local-note{display:none}.import-panel{padding:23px}.review{padding-top:30px}.review-top{align-items:start;gap:15px;margin-bottom:23px}.review-top h2{font-size:21px}.review-top .secondary{font-size:10px;padding:11px;max-width:115px}.review-top .eyebrow{font-size:8px}.review-layout{grid-template-columns:1fr;gap:18px;margin-top:15px}.session-sidebar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:0}.session-sidebar>.eyebrow,.sidebar-note,.review-tip{display:none}.stat{margin:8px 0;font-size:10px;gap:6px}.stat strong{font-size:11px}.session-sidebar>.text-button{font-size:10px}.song-card{width:100%;max-width:350px;justify-self:center}.artwork{max-height:320px}.decisions{width:100%;margin-top:18px}.results{padding-top:35px}.results h1{font-size:37px}.result-panel{padding:20px}.export-buttons{flex-wrap:wrap}.export-buttons .secondary{width:100%}footer{padding:25px 22px;font-size:7px;gap:20px}.result-bottom{gap:20px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.preview-note{font-size:10px;line-height:1.6;color:#919b85;margin:10px 0 0}
+
+.playback-preference{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:-12px 0 25px;padding:14px 16px;border:1px solid var(--line);border-radius:9px;background:#fffefa}.autoplay-label{position:relative;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap}.autoplay-label input{position:absolute;left:0;top:0;width:36px;height:22px;opacity:0;margin:0;cursor:pointer}.switch-track{display:inline-block;position:relative;width:36px;height:22px;border-radius:20px;background:#d9ded2;transition:background .15s}.switch-track:after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;background:#fff;border-radius:50%;box-shadow:0 1px 3px #25332220;transition:transform .15s}.autoplay-label input:checked+.switch-track{background:#82ad5f}.autoplay-label input:checked+.switch-track:after{transform:translateX(14px)}.autoplay-label input:focus-visible+.switch-track{outline:3px solid #5c9252;outline-offset:3px}#autoplayStatus{font-size:10px;color:#818d76;line-height:1.6}@media(max-width:760px){.playback-preference{align-items:flex-start;flex-direction:column;gap:8px;margin-top:0}}
+
+#embedWrap{position:relative;overflow:hidden;min-height:152px}.preview-slot{position:absolute;top:0;left:0;width:100%;height:152px;visibility:hidden;pointer-events:none}.preview-slot.active{position:relative;visibility:visible;pointer-events:auto}.preload-status{font-size:10px;color:#8a957e;margin:-14px 0 18px;min-height:16px}
+.phone-actions,.swipe-stamp{display:none}
+@media(max-width:760px),(max-width:1000px) and (max-height:500px){
+ body{height:100vh;height:100dvh;min-height:0;display:grid;grid-template-rows:44px minmax(0,1fr) 18px;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);overscroll-behavior-x:none;overflow-x:clip}
+ .session-sidebar>.eyebrow,.sidebar-note,.review-tip,.local-note{display:none}.intro-copy h1 br{display:none}.header-note{font-size:0}
+ header{height:auto;margin:0 14px}.brand{font-size:18px}.brand-icon{width:27px;height:27px;font-size:25px;margin-right:8px}
+ main{width:100%;height:100%;min-height:0;padding:0 14px;display:grid}footer{width:100%;padding:3px 14px;font-size:7px;align-items:center}
+ .review{height:100%;min-height:0;padding:6px 0;display:grid;grid-template-rows:auto auto auto auto 4px minmax(0,1fr) 44px;gap:4px}
+ .review-top{margin:0;align-items:center;gap:8px}.review-top .eyebrow{display:none}.review-top h2{font-size:17px;letter-spacing:-.6px}.review-top .secondary{min-height:36px;max-width:none;padding:7px 10px;font-size:10px;white-space:nowrap}
+ .playback-preference{margin:0;padding:4px 9px;flex-direction:row;align-items:center;gap:8px}.autoplay-label{font-size:11px;min-height:32px}#autoplayStatus{font-size:9px;line-height:1.3;max-width:48%}
+ .preload-status{margin:0;min-height:12px;font-size:9px;line-height:12px}.progress-label{margin:0;line-height:12px;font-size:9px}
+ .review-layout{min-height:0;margin:0;grid-template-columns:minmax(0,1fr);grid-template-rows:20px minmax(0,1fr);gap:4px}
+ .session-sidebar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;min-height:0}.stat{margin:0;font-size:10px;gap:5px}.stat strong{font-size:11px}.session-sidebar>#undo{display:none}
+ .song-card{justify-self:center;width:100%;max-width:420px;height:100%;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto;touch-action:pan-y pinch-zoom;user-select:none;transform:translateX(var(--swipe-x,0px)) rotate(var(--swipe-angle,0deg));transition:transform .12s ease-out}
+ .song-card.dragging{transition:none}.artwork{min-height:0;max-height:none;aspect-ratio:auto;overflow:hidden}.record{width:min(38vw,20dvh);height:auto;aspect-ratio:1}.record span{width:32%;height:auto;aspect-ratio:1;font-size:22px}.card-stamp{bottom:8px;left:10px;font-size:6px}
+ .swipe-stamp{display:block;position:absolute;top:12px;z-index:1;border:2px solid currentColor;border-radius:6px;padding:6px 10px;font-size:15px;font-weight:800;letter-spacing:1px;opacity:0;pointer-events:none;background:#fffefae8}.keep-stamp{left:12px;color:#487335;transform:rotate(-10deg)}.remove-stamp{right:12px;color:#a24e47;transform:rotate(10deg)}
+ .song-card[data-swipe="keep"] .keep-stamp,.song-card[data-swipe="remove"] .remove-stamp{opacity:var(--swipe-strength,0)}
+ .song-info{padding:8px 10px}.song-info>.eyebrow,.song-info>#songSubtitle,.preview-note{display:none}.song-info h3{font-size:18px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.track-links{gap:8px;margin:4px 0}.track-links a,.track-links button{min-height:32px;display:flex;align-items:center;font-size:10px}#embedWrap{margin-top:0}
+ .decisions,.under-actions{display:none}.phone-actions{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;width:100%;max-width:420px;justify-self:center;font-size:11px;color:#818b76}.phone-actions>span:last-child{text-align:right;color:#487335}.phone-actions button{min-height:44px;min-width:96px;padding:8px 14px;background:#fffefa;border:1px solid #d5d9ce;border-radius:8px;color:#435b35;font-size:12px;font-weight:600}
+ .intro{height:100%;min-height:0;display:flex;flex-direction:column;gap:8px;padding:8px 0}.intro-copy{width:100%}.intro-copy>.eyebrow{font-size:8px;margin:0}.intro-copy h1{font-size:30px;line-height:1.1;letter-spacing:-1.4px;margin:6px 0}.intro-copy .lede{font-size:12px;line-height:1.4;margin:6px 0}.steps{margin:8px 0;gap:10px;justify-content:space-between}.steps span{font-size:9px}.steps b{width:18px;height:18px;font-size:8px}
+ .import-panel{width:100%;flex:1;min-height:0;padding:12px;display:flex;flex-direction:column}.import-panel .panel-top{margin-bottom:8px}.import-panel label{font-size:18px}.import-panel .muted{font-size:11px;line-height:1.4;margin:6px 0 8px}textarea{min-height:55px;resize:none;font-size:16px;line-height:1.4;padding:10px}.import-panel textarea{flex:1}.input-meta{margin:6px 0 8px;font-size:9px}.primary,.resume{min-height:40px;padding:10px 14px;flex-shrink:0}.resume{margin-top:6px}.fine{font-size:9px;line-height:1.3;margin:6px 0 0}.error{margin:4px 0;font-size:10px}
+ .results{height:100%;min-height:0;max-width:100%;width:100%;padding:8px 0;display:flex;flex-direction:column;gap:6px}.results>.eyebrow{margin:0;font-size:8px}.result-mark{width:28px;height:28px;font-size:17px;flex-shrink:0}.results h1{font-size:28px;letter-spacing:-1.3px;margin:0}.results .lede{font-size:11px;line-height:1.4;margin:0}.result-panel{flex:1;min-height:0;padding:12px;display:flex;flex-direction:column}.result-panel .panel-top{margin-bottom:8px}.result-panel label{font-size:12px}#output{flex:1;min-height:50px;font-size:12px}.export-buttons{margin-top:8px;gap:8px;flex-wrap:nowrap}.export-buttons .secondary{width:auto;min-height:40px;padding:8px 10px;font-size:11px}.paste-tip{margin-top:8px;padding-top:8px;font-size:9px;line-height:1.4}.paste-tip b{font-size:10px}.paste-tip p{margin:4px 0 0}#copyStatus:empty{display:none}.result-bottom{margin:0;gap:8px}.result-bottom .secondary{min-height:40px;padding:8px 12px;font-size:11px}#toast{max-width:calc(100% - 24px);width:max-content;bottom:calc(18px + env(safe-area-inset-bottom));font-size:11px}
+}
+@media(max-width:1000px) and (max-height:500px) and (orientation:landscape){
+ .review{grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);grid-template-rows:auto auto auto 12px minmax(24px,1fr) 44px;column-gap:10px}.review-top,.playback-preference,.preload-status,.progress-label,.progress-track,.phone-actions{grid-column:1}.review-top h2{font-size:14px}.review-top{align-items:start;flex-direction:column;gap:4px}.review-top .secondary{min-height:30px;padding:5px 8px}.playback-preference{flex-wrap:wrap;gap:0}#autoplayStatus{max-width:100%}.review-layout{display:contents}.song-card{grid-column:2;grid-row:1 / -1}.session-sidebar{grid-column:1;grid-row:5;align-self:center}.progress-track{grid-row:5;align-self:start}.phone-actions{grid-row:6;font-size:9px;gap:4px}.phone-actions button{min-width:65px;padding:8px}.record{width:70px}
+ .intro{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch}.intro-copy{align-self:center}.steps{flex-direction:column;gap:4px}.results{display:grid;grid-template-columns:.8fr 1.5fr;grid-template-rows:18px 28px auto 1fr auto;gap:6px 12px}.results>.eyebrow,.result-mark,.results h1,.results>.lede,.result-bottom{grid-column:1}.result-panel{grid-column:2;grid-row:1 / -1}.result-bottom{flex-direction:column;align-items:stretch}
+ .song-card{grid-template-columns:70px minmax(0,1fr);grid-template-rows:minmax(0,1fr) 152px;gap:4px 8px;padding:4px}.song-info{display:contents}.song-card .artwork{grid-column:1;grid-row:1;border-radius:6px}.song-info h3{grid-column:2;grid-row:1;align-self:start;min-width:0;font-size:16px;line-height:20px}.track-links{grid-column:2;grid-row:1;align-self:end;margin:0}#embedWrap{grid-column:1 / -1;grid-row:2}.card-stamp{display:none}.swipe-stamp{font-size:10px;padding:4px;border-width:1px;left:2px;right:2px;top:4px;text-align:center}.record{width:60px}
+ .import-panel{padding:8px}.import-panel .panel-top{margin-bottom:4px}.import-panel .panel-top .eyebrow{font-size:7px;letter-spacing:1px}.import-panel .small-pill{font-size:7px;padding:4px 6px}.import-panel label{font-size:16px}.import-panel .muted{font-size:10px;line-height:1.2;margin:4px 0}.import-panel textarea{min-height:40px;padding:6px}.import-panel .input-meta{margin:4px 0}.import-panel .primary,.import-panel .resume{min-height:32px;padding:6px 10px}.import-panel .fine{font-size:8px;margin-top:4px}
+}
+@media(prefers-reduced-motion:reduce){.song-card{transition:none}}
+</style>
+</head>
+<body>
+<header><a class="brand" href="./" aria-label="Song Sifter home"><span class="brand-icon">≋</span> song sifter<span class="brand-dot">.</span></a><span class="header-note"><i></i> No Spotify connection needed</span></header>
+<main>
+<section id="importView" class="view intro">
+ <div class="intro-copy"><p class="eyebrow">A LITTLE PLAYLIST SPRING CLEANING</p><h1>Keep the<br>good stuff<span>.</span></h1><p class="lede">Your liked songs, one at a time.<br>Keep the ones that belong. Leave the rest behind.</p><div class="steps"><span><b>01</b> Paste your links</span><span><b>02</b> Make the cut</span><span><b>03</b> Copy your playlist</span></div><p class="local-note">Your decisions stay in this browser.<br>Removing here never unlikes a song on Spotify.</p></div>
+ <div class="import-panel"><div class="panel-top"><span class="eyebrow">YOUR STARTING LINEUP</span><span class="small-pill">SPOTIFY LINKS</span></div><label for="links">Drop your collection here.</label><p class="muted">Paste track links, one per line. A whole bunch is fine.</p><textarea id="links" spellcheck="false" placeholder="https://open.spotify.com/track/…&#10;https://open.spotify.com/track/…&#10;https://open.spotify.com/track/…"></textarea><div class="input-meta"><span id="inputCount">0 songs ready</span><button class="text-button" id="example">Try an example ↗</button></div><p id="importError" class="error" role="alert"></p><button id="start" class="primary wide" disabled>Start sifting <span>→</span></button><button id="resume" class="resume wide" hidden>Resume your previous session →</button><p class="fine">Titles and artwork from Spotify. No account access required.</p></div>
+</section>
+<section id="reviewView" class="view review" hidden>
+ <div class="review-top"><div><p class="eyebrow">MAKE ROOM FOR YOUR FAVORITES</p><h2>Does this one make the cut?</h2></div><button id="finishEarly" class="secondary">Export kept songs ↗</button></div>
+ <div class="playback-preference"><label class="autoplay-label"><input id="autoplay" type="checkbox" role="switch" aria-describedby="autoplayStatus"><span class="switch-track" aria-hidden="true"></span><span>Autoplay songs</span></label><span id="autoplayStatus" role="status">Off — press Play when you want to listen.</span></div>
+ <p id="preloadStatus" class="preload-status" role="status"></p>
+ <div class="progress-label"><span id="position"></span><span id="percent"></span></div><div class="progress-track"><div id="progress"></div></div>
+ <div class="review-layout"><aside class="session-sidebar"><p class="eyebrow">THE SESSION</p><div class="stat"><span class="stat-dot green"></span><span>Kept</span><strong id="keptCount">0</strong></div><div class="stat"><span class="stat-dot gray"></span><span>Removed</span><strong id="removedCount">0</strong></div><div class="stat"><span class="stat-dot outline"></span><span>To go</span><strong id="remainingCount">0</strong></div><div class="sidebar-note">A fresh playlist.<br>A little more you.</div><button id="undo" class="text-button" disabled>↶ Undo last choice</button></aside>
+ <article id="songCard" class="song-card" aria-describedby="swipeHelp"><div id="artwork" class="artwork"><div id="placeholder" class="record-placeholder"><div class="record"><span>♪</span></div></div><img id="cover" alt="" hidden><span class="card-stamp">ON THE RECORD</span><span class="swipe-stamp keep-stamp" aria-hidden="true">KEEP ✓</span><span class="swipe-stamp remove-stamp" aria-hidden="true">REMOVE ×</span></div><div class="song-info"><p class="eyebrow">CURRENT TRACK</p><h3 id="songTitle" aria-live="polite">Loading your song…</h3><p id="songSubtitle" class="muted">Getting the details from Spotify</p><div class="track-links"><a id="openSpotify" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="currentColor"/><path d="M5 9c4-2 10-1 14 1M6 12c4-1 8-1 12 1M7 15c3-1 6-.5 9 1" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg> Open in Spotify ↗</a><button id="listen" class="text-button" aria-expanded="true" aria-controls="embedWrap">Hide preview ↑</button></div><div id="embedWrap" hidden></div><p class="preview-note">Press Play to listen. Playback availability depends on Spotify. Choosing Keep or Remove stops this track.</p></div></article>
+ <aside class="review-tip"><span class="tip-symbol">✳</span><p>Trust your taste.</p><span>You can always undo<br>your last choice.</span><div class="shortcuts"><span><kbd>←</kbd> remove</span><span><kbd>→</kbd> keep</span><span><kbd>Z</kbd> undo</span></div></aside></div>
+ <div class="decisions"><button id="remove" class="decision remove"><span>×</span> Remove</button><button id="keep" class="decision keep"><span>✓</span> Keep song</button></div><div class="phone-actions" id="swipeHelp"><span>← Swipe to remove</span><button id="phoneUndo" disabled aria-label="Undo last choice">↶ Undo</button><span>Swipe to keep →</span></div><p class="under-actions">One choice. On to the next.</p>
+</section>
+<section id="resultsView" class="view results" hidden><p class="eyebrow">THE GOOD STUFF, ALL TOGETHER</p><div class="result-mark">✓</div><h1>Your next playlist<span>.</span></h1><p class="lede" id="resultSummary"></p><div class="result-panel"><div class="panel-top"><label for="output">Your kept songs</label><span id="resultCount" class="small-pill"></span></div><textarea id="output" readonly spellcheck="false" aria-label="Kept Spotify song links"></textarea><div class="export-buttons"><button id="copy" class="primary">Copy song links <span>↗</span></button><button id="download" class="secondary">Download .txt</button></div><p id="copyStatus" role="status" class="fine"></p><div class="paste-tip"><b>Back to Spotify</b><p>Open a playlist in the desktop app. Click in the track list (outside the search box), then paste with Ctrl+V or ⌘V.</p></div></div><div class="result-bottom"><button id="back" class="secondary">← Back to reviewing</button><button id="restart" class="text-button">Start a fresh list ↗</button></div></section>
+</main><footer><span>LESS SKIPPING. MORE LISTENING.</span><span>A small tool for a better rotation.</span></footer><div id="toast" role="status"></div>
+<script>const $ = id => document.getElementById(id);
+const STORAGE = 'song-sifter-v1';
+let session = {tracks:[], decisions:[]};
+let currentView = 'import', renderToken = 0, toastTimer;
+const metadata = new Map(), pending = new Map();
+let autoplay = false, iframeAPI = null, apiRequested = false, activePreview = null;
+const previewPool = new Map(), artworkCache = new Map();
+const LOOKAHEAD = 5;
+const CHOICE_DELAY_MS = 50;
+let choiceTimer = null;
+const phoneLayout = window.matchMedia('(max-width:760px), (max-width:1000px) and (max-height:500px)');
+let swipeGesture = null;
+try { autoplay = localStorage.getItem('song-sifter-autoplay') === 'true'; } catch {}
+function disposePreview(entry) {
+  if (previewPool.get(entry.track.id) !== entry) return;
+  previewPool.delete(entry.track.id);
+  clearTimeout(entry.readyTimer);
+  if (entry.controller) {
+    try { entry.controller.pause(); } catch {}
+    try { entry.controller.destroy(); } catch {}
+  }
+  entry.slot.remove();
+  if (activePreview === entry) activePreview = null;
+}
+function pausePreview(entry) {
+  if (!entry) return;
+  if (entry.controller) { try { entry.controller.pause(); } catch {} }
+  // Standard iframes have no public pause method; removing one stops its audio.
+  else if (entry.mode === 'frame') disposePreview(entry);
+}
+function clearPlayer() {
+  for (const entry of [...previewPool.values()]) disposePreview(entry);
+  activePreview = null; $('embedWrap').replaceChildren(); delete $('embedWrap').dataset.track;
+  artworkCache.clear();
+}
+function attemptAutoplay(entry) {
+  if (choiceTimer !== null || !autoplay || activePreview !== entry || !entry.ready || !entry.controller || currentView !== 'review' || $('embedWrap').hidden) return;
+  try {
+    const result = entry.controller.play();
+    if (result?.catch) result.catch(() => { if (activePreview === entry) $('autoplayStatus').textContent = 'Tap Play once if your browser blocks autoplay.'; });
+  } catch { $('autoplayStatus').textContent = 'Tap Play once if your browser blocks autoplay.'; }
+}
+window.onSpotifyIframeApiReady = api => {
+  iframeAPI = api;
+  for (const entry of previewPool.values()) initializeController(entry);
+};
+function requestPlayerAPI() {
+  if (apiRequested) return;
+  apiRequested = true;
+  const script = document.createElement('script');
+  script.src = 'https://open.spotify.com/embed/iframe-api/v1'; script.async = true;
+  script.onerror = () => { apiRequested = false; $('autoplayStatus').textContent = 'Autoplay unavailable. Use Play in the Spotify player.'; };
+  document.head.appendChild(script);
+}
+function standardPreview(entry) {
+  clearTimeout(entry.readyTimer);
+  if (entry.controller) { try { entry.controller.destroy(); } catch {} entry.controller = null; }
+  entry.mode = 'frame'; entry.ready = false;
+  const frame = document.createElement('iframe');
+  frame.src = `https://open.spotify.com/embed/track/${entry.track.id}?utm_source=generator`;
+  frame.title = 'Spotify song preview and artist'; frame.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+  frame.loading = 'eager'; frame.allowFullscreen = true;
+  frame.onload = () => { if (previewPool.get(entry.track.id) === entry && entry.slot.firstChild === frame) { entry.ready = true; updatePreloadStatus(); } };
+  entry.slot.replaceChildren(frame);
+}
+function watchController(entry) {
+  clearTimeout(entry.readyTimer);
+  entry.readyTimer = setTimeout(() => {
+    if (previewPool.get(entry.track.id) === entry && !entry.ready) {
+      standardPreview(entry);
+      $('autoplayStatus').textContent = 'Use Play in the Spotify player to listen.';
+    }
+  }, 10000);
+}
+function initializeController(entry) {
+  if (!iframeAPI || entry.mode === 'controller' || previewPool.get(entry.track.id) !== entry) return;
+  entry.mode = 'controller'; entry.ready = false;
+  const host = document.createElement('div'); entry.slot.replaceChildren(host);
+  watchController(entry);
+  try {
+    iframeAPI.createController(host, {uri:`spotify:track:${entry.track.id}`,width:'100%',height:152}, controller => {
+      if (previewPool.get(entry.track.id) !== entry || entry.mode !== 'controller') { try { controller.destroy(); } catch {} return; }
+      entry.controller = controller;
+      controller.addListener('ready', () => {
+        if (previewPool.get(entry.track.id) !== entry || entry.controller !== controller) return;
+        clearTimeout(entry.readyTimer);
+        entry.ready = true; updatePreloadStatus(); attemptAutoplay(entry);
+      });
+      controller.addListener('playback_started', () => {
+        if (choiceTimer !== null || activePreview !== entry || entry.controller !== controller || currentView !== 'review' || $('embedWrap').hidden) { try { controller.pause(); } catch {} return; }
+        if (autoplay) $('autoplayStatus').textContent = 'Autoplay on · playing this song.';
+      });
+    });
+  } catch { standardPreview(entry); }
+}
+function ensurePreview(track) {
+  let entry = previewPool.get(track.id);
+  if (entry) return entry;
+  // Reuse one visible controller. Hidden Spotify players can stall, and keeping
+  // seven full players alive makes the preload queue expensive and unreliable.
+  entry = activePreview;
+  if (entry?.controller) {
+    previewPool.delete(entry.track.id);
+    entry.track = track; entry.ready = false;
+    previewPool.set(track.id,entry);
+    watchController(entry);
+    try { entry.controller.loadUri(`spotify:track:${track.id}`); }
+    catch { standardPreview(entry); }
+    return entry;
+  }
+  for (const previous of [...previewPool.values()]) disposePreview(previous);
+  const slot = document.createElement('div'); slot.className = 'preview-slot'; slot.setAttribute('aria-hidden','true'); slot.inert = true;
+  entry = {track,slot,ready:false,controller:null,mode:null};
+  previewPool.set(track.id,entry); $('embedWrap').appendChild(slot);
+  if (iframeAPI) initializeController(entry); else standardPreview(entry);
+  return entry;
+}
+function warmMetadata(track) {
+  return getMetadata(track).then(data => {
+    const index = session.decisions.length;
+    const wanted = session.tracks.slice(Math.max(0,index-1),index+LOOKAHEAD+1).some(item => item.id === track.id);
+    if (data?.cover && !artworkCache.has(track.id) && wanted) {
+      const image = new Image(); image.src = data.cover; artworkCache.set(track.id,image);
+    }
+    updatePreloadStatus(); return data;
+  });
+}
+function updatePreloadStatus() {
+  if (currentView !== 'review') return;
+  const upcoming = session.tracks.slice(session.decisions.length+1,session.decisions.length+1+LOOKAHEAD);
+  const ready = upcoming.filter(track => metadata.has(track.id)).length;
+  $('preloadStatus').textContent = upcoming.length ? `Next ${upcoming.length} queued · ${ready} song detail${ready===1?'':'s'} ready` : 'Last song in your list';
+}
+function preloadWindow() {
+  const index = session.decisions.length;
+  // Prefetch lightweight metadata and artwork, not hidden Spotify players.
+  const windowTracks = session.tracks.slice(Math.max(0,index-1),index+LOOKAHEAD+1);
+  const wanted = new Set(windowTracks.map(track=>track.id));
+  for (const id of artworkCache.keys()) if (!wanted.has(id)) artworkCache.delete(id);
+  for (const track of windowTracks) warmMetadata(track);
+  requestPlayerAPI(); updatePreloadStatus();
+}
+function updateAutoplayUI() {
+  $('autoplay').checked = autoplay;
+  $('autoplayStatus').textContent = autoplay ? 'Starts each song automatically when allowed. You may need to tap Play once.' : 'Off — press Play when you want to listen.';
+}
+
+function parseLinks(text) {
+  const matches = text.match(/https?:\/\/open\.spotify\.com\/(?:intl-[a-z-]+\/)?track\/[A-Za-z0-9]+(?:[^\s<>]*)?|spotify:track:[A-Za-z0-9]+/gi) || [];
+  const tracks = [], seen = new Set(); let duplicates = 0, invalid = 0;
+  for (const value of matches) {
+    const match = value.match(/(?:\/track\/|spotify:track:)([A-Za-z0-9]+)(?=$|[?&#\s)\],.;])/i);
+    if (!match || !/^[A-Za-z0-9]{22}$/.test(match[1])) { invalid++; continue; }
+    const id = match[1];
+    if (seen.has(id)) { duplicates++; continue; }
+    seen.add(id); tracks.push({id,url:`https://open.spotify.com/track/${id}`});
+  }
+  return {tracks,duplicates,invalid};
+}
+function save() { try { localStorage.setItem(STORAGE, JSON.stringify(session)); } catch { toast('Browser storage is unavailable. Keep this tab open to preserve progress.'); } }
+function load() {
+  try {
+    const data = JSON.parse(localStorage.getItem(STORAGE));
+    if (!Array.isArray(data?.tracks) || !data.tracks.length || !Array.isArray(data.decisions)) return;
+    if (!data.tracks.every(t => /^[A-Za-z0-9]{22}$/.test(t.id) && t.url === `https://open.spotify.com/track/${t.id}`)) return;
+    if (data.decisions.length > data.tracks.length || !data.decisions.every(d => typeof d === 'boolean')) return;
+    session = data; $('resume').hidden = false;
+    $('resume').textContent = `Resume session · ${data.decisions.length}/${data.tracks.length} reviewed →`;
+  } catch { /* A new session is still available if storage is unavailable. */ }
+}
+function cancelChoice() {
+  clearTimeout(choiceTimer); choiceTimer = null;
+  $('keep').disabled = false; $('remove').disabled = false;
+  resetSwipe();
+}
+function view(name) { cancelChoice(); currentView = name; for (const v of ['import','review','results']) $(v+'View').hidden = v !== name; window.scrollTo({top:0,behavior:'instant'}); }
+function updateInput() {
+  const result = parseLinks($('links').value);
+  $('inputCount').textContent = `${result.tracks.length} song${result.tracks.length===1?'':'s'} ready${result.duplicates ? ` · ${result.duplicates} duplicate${result.duplicates===1?'':'s'} removed` : ''}`;
+  $('start').disabled = !result.tracks.length;
+  $('importError').textContent = result.invalid ? `${result.invalid} malformed track link${result.invalid===1?' was':'s were'} ignored.` : ($('links').value.trim() && !result.tracks.length ? 'Paste full Spotify track links (open.spotify.com/track/…). Album and playlist links are not supported.' : '');
+}
+async function getMetadata(track) {
+  if (metadata.has(track.id)) return metadata.get(track.id);
+  if (pending.has(track.id)) return pending.get(track.id);
+  const task = (async () => {
+    const controller = new AbortController(); const timeout = setTimeout(() => controller.abort(), 7000);
+    try {
+      const response = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(track.url)}`, {signal:controller.signal});
+      if (!response.ok) throw new Error('Spotify unavailable');
+      const data = await response.json();
+      if (typeof data.title !== 'string') throw new Error('Missing title');
+      const result = {title:data.title,cover: typeof data.thumbnail_url==='string' && /^https:\/\//.test(data.thumbnail_url) ? data.thumbnail_url : null};
+      metadata.set(track.id,result); return result;
+    } catch { return null; } finally { clearTimeout(timeout); pending.delete(track.id); }
+  })();
+  pending.set(track.id,task); return task;
+}
+function showEmbed(track) {
+  if (!track || choiceTimer !== null) return;
+  $('embedWrap').hidden = false; $('listen').textContent = 'Hide preview ↑';
+  $('listen').setAttribute('aria-expanded','true');
+  if (activePreview?.track.id === track.id) return;
+  if (activePreview) pausePreview(activePreview);
+  const entry = ensurePreview(track); activePreview = entry;
+  $('embedWrap').dataset.track = track.id;
+  // Keep the visible controller mounted while loading the next track.
+  for (const item of previewPool.values()) {
+    const active = item === entry;
+    item.slot.className = active ? 'preview-slot active' : 'preview-slot';
+    item.slot.setAttribute('aria-hidden',String(!active)); item.slot.inert = !active;
+  }
+  attemptAutoplay(entry);
+}
+function renderReview() {
+  if (session.decisions.length >= session.tracks.length) { renderResults(); return; }
+  view('review'); const token = ++renderToken, index = session.decisions.length, track = session.tracks[index];
+  const kept = session.decisions.filter(Boolean).length;
+  $('position').textContent = `Song ${index+1} of ${session.tracks.length}`;
+  $('percent').textContent = `${Math.round(index/session.tracks.length*100)}% reviewed`;
+  $('progress').style.width = `${index/session.tracks.length*100}%`;
+  $('keptCount').textContent = kept; $('removedCount').textContent = index-kept; $('remainingCount').textContent = session.tracks.length-index;
+  $('undo').disabled = index===0;
+  $('phoneUndo').disabled = index===0;
+  $('songTitle').textContent = 'Loading your song…'; $('songSubtitle').textContent = 'Getting the details from Spotify';
+  $('cover').hidden = true; $('cover').removeAttribute('src'); $('placeholder').hidden = false;
+  updateAutoplayUI();
+  $('openSpotify').href = track.url;
+  showEmbed(track);
+  preloadWindow();
+  const applyMetadata = data => {
+    if (token !== renderToken || currentView !== 'review') return;
+    if (data) {
+      $('songTitle').textContent = data.title; $('songTitle').title = data.title; $('songSubtitle').textContent = 'Press Play below to listen before you decide.';
+      if (data.cover) {
+        $('cover').onload = () => { if (token === renderToken) { $('cover').hidden=false; $('placeholder').hidden=true; } };
+        $('cover').onerror = () => { if (token === renderToken) { $('cover').hidden=true; $('placeholder').hidden=false; } };
+        $('cover').alt = `Cover artwork for ${data.title}`; $('cover').src = data.cover;
+        if ($('cover').complete && $('cover').naturalWidth) { $('cover').hidden=false; $('placeholder').hidden=true; }
+      }
+    } else {
+      $('songTitle').textContent = 'Your next track'; $('songTitle').removeAttribute('title'); $('songSubtitle').textContent = 'Press Play in the Spotify player below to listen.';
+    }
+  };
+  if (metadata.has(track.id)) applyMetadata(metadata.get(track.id));
+  else getMetadata(track).then(applyMetadata);
+}
+function decide(keep) {
+  if (choiceTimer !== null || currentView!=='review' || session.decisions.length>=session.tracks.length) return;
+  session.decisions.push(keep); save();
+  ++renderToken;
+  $('keep').disabled = true; $('remove').disabled = true;
+  $('undo').disabled = false; $('phoneUndo').disabled = false;
+  choiceTimer = setTimeout(() => { choiceTimer = null; renderReview(); }, CHOICE_DELAY_MS);
+  pausePreview(activePreview);
+}
+function undo() { if (!session.decisions.length) return; cancelChoice(); session.decisions.pop(); save(); renderReview(); }
+function resetSwipe() {
+  const gesture = swipeGesture; swipeGesture = null;
+  const card = $('songCard');
+  if (gesture && card.hasPointerCapture(gesture.id)) card.releasePointerCapture(gesture.id);
+  card.classList.remove('dragging'); delete card.dataset.swipe;
+  for (const property of ['--swipe-x','--swipe-angle','--swipe-strength']) card.style.removeProperty(property);
+}
+function startSwipe(event) {
+  if (!phoneLayout.matches || currentView !== 'review' || choiceTimer !== null || !event.isPrimary || event.button !== 0 || swipeGesture || event.target.closest('a,button,input,#embedWrap')) return;
+  swipeGesture = {id:event.pointerId,x:event.clientX,y:event.clientY,token:renderToken,dragging:false};
+}
+function moveSwipe(event) {
+  const gesture = swipeGesture;
+  if (!gesture || gesture.id !== event.pointerId) return;
+  if (gesture.token !== renderToken || !phoneLayout.matches) { resetSwipe(); return; }
+  const x = event.clientX-gesture.x, y = event.clientY-gesture.y;
+  if (!gesture.dragging) {
+    if (Math.abs(y)>10 && Math.abs(y)>=Math.abs(x)) { resetSwipe(); return; }
+    if (Math.abs(x)<10 || Math.abs(x)<Math.abs(y)*1.2) return;
+    gesture.dragging = true;
+    $('songCard').setPointerCapture(event.pointerId);
+  }
+  const card = $('songCard');
+  card.classList.add('dragging'); card.dataset.swipe = x>0 ? 'keep' : 'remove';
+  card.style.setProperty('--swipe-x',`${x}px`);
+  card.style.setProperty('--swipe-angle',`${Math.max(-12,Math.min(12,x/18))}deg`);
+  card.style.setProperty('--swipe-strength',Math.min(1,Math.abs(x)/75));
+}
+function endSwipe(event) {
+  const gesture = swipeGesture;
+  if (!gesture || gesture.id !== event.pointerId) return;
+  const card = $('songCard'), x = event.clientX-gesture.x, y = event.clientY-gesture.y;
+  const threshold = Math.min(90,Math.max(55,card.clientWidth*.22));
+  const commit = gesture.dragging && gesture.token===renderToken && phoneLayout.matches && Math.abs(x)>=threshold && Math.abs(x)>Math.abs(y)*1.2;
+  resetSwipe();
+  if (commit) {
+    decide(x>0);
+    card.dataset.swipe = x>0 ? 'keep' : 'remove';
+    card.style.setProperty('--swipe-strength',1);
+    card.style.setProperty('--swipe-x',`${Math.sign(x)*card.clientWidth*1.1}px`);
+    card.style.setProperty('--swipe-angle',`${Math.sign(x)*12}deg`);
+  }
+}
+function keptTracks() { return session.tracks.filter((_,i) => session.decisions[i] === true); }
+function renderResults() {
+  ++renderToken; clearPlayer();
+  view('results'); const kept = keptTracks(), remaining = session.tracks.length-session.decisions.length;
+  $('resultSummary').textContent = `${kept.length} song${kept.length===1?'':'s'} kept. ${session.decisions.length-kept.length} removed.${remaining ? ` ${remaining} still to review.` : ' A rotation worth coming back to.'}`;
+  $('resultCount').textContent = `${kept.length} TRACK${kept.length===1?'':'S'}`;
+  $('output').value = kept.map(t=>t.url).join('\n'); $('output').placeholder = 'No kept songs yet. Go back and keep a favorite.';
+  $('copy').disabled = !kept.length; $('download').disabled = !kept.length; $('copyStatus').textContent = '';
+  $('back').disabled = !session.tracks.length;
+  $('back').textContent = remaining ? '← Back to reviewing' : '↶ Revisit last song';
+}
+function toast(message) { clearTimeout(toastTimer); $('toast').textContent=message; $('toast').classList.add('visible'); toastTimer=setTimeout(()=>$('toast').classList.remove('visible'),3500); }
+$('links').addEventListener('input',updateInput);
+$('example').onclick = () => { $('links').value='https://open.spotify.com/track/3s2YCL5LHLzXWbw7ezQru3'; updateInput(); };
+$('start').onclick = () => { const {tracks}=parseLinks($('links').value); if (!tracks.length) return; clearPlayer(); session={tracks,decisions:[]}; save(); renderReview(); };
+$('resume').onclick = renderReview;
+$('keep').onclick = () => decide(true); $('remove').onclick = () => decide(false); $('undo').onclick = undo;
+$('phoneUndo').onclick = undo;
+$('songCard').addEventListener('pointerdown',startSwipe);
+$('songCard').addEventListener('pointermove',moveSwipe);
+$('songCard').addEventListener('pointerup',endSwipe);
+$('songCard').addEventListener('pointercancel',resetSwipe);
+$('songCard').addEventListener('lostpointercapture',resetSwipe);
+phoneLayout.addEventListener('change',resetSwipe);
+window.addEventListener('resize',resetSwipe);
+$('finishEarly').onclick = renderResults;
+$('listen').onclick = () => { if ($('embedWrap').hidden) { showEmbed(session.tracks[session.decisions.length]); attemptAutoplay(activePreview); } else { $('embedWrap').hidden=true; pausePreview(activePreview); $('listen').textContent='Show song preview ↓'; $('listen').setAttribute('aria-expanded','false'); } };
+$('autoplay').addEventListener('change', () => {
+  autoplay = $('autoplay').checked;
+  try { localStorage.setItem('song-sifter-autoplay',String(autoplay)); } catch {}
+  updateAutoplayUI();
+  if (!autoplay) { if (activePreview?.controller) { try { activePreview.controller.pause(); } catch {} } }
+  else if (currentView === 'review') {
+    if (activePreview && !$('embedWrap').hidden) attemptAutoplay(activePreview);
+    else showEmbed(session.tracks[session.decisions.length]);
+    requestPlayerAPI();
+  }
+});
+$('copy').onclick = async () => { try { await navigator.clipboard.writeText($('output').value); $('copyStatus').textContent='Copied! Your playlist is one paste away.'; } catch { $('output').focus(); $('output').select(); $('copyStatus').textContent='Your links are selected. Press Ctrl+C or ⌘C to copy.'; } };
+$('download').onclick = () => { const blob=new Blob([$('output').value+'\n'],{type:'text/plain'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='song-sifter-kept.txt'; a.click(); setTimeout(()=>URL.revokeObjectURL(url),1000); };
+$('back').onclick = () => { if (session.decisions.length>=session.tracks.length) undo(); else renderReview(); };
+$('restart').onclick = () => { view('import'); $('links').value=''; $('resume').hidden=false; $('resume').textContent=`Resume session · ${session.decisions.length}/${session.tracks.length} reviewed →`; updateInput(); };
+document.addEventListener('keydown',event => {
+  if (currentView!=='review' || /INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName) || event.ctrlKey || event.metaKey || event.altKey || event.repeat) return;
+  if (event.key==='ArrowRight') { event.preventDefault(); decide(true); }
+  if (event.key==='ArrowLeft') { event.preventDefault(); decide(false); }
+  if (event.key.toLowerCase()==='z') { event.preventDefault(); undo(); }
+});
+load(); updateInput(); updateAutoplayUI();
+</script></body></html>
